@@ -1,0 +1,12 @@
+C:\Users\LIMA\Desktop\ULTRA\ULTRA\ULTRA\bin\x64\Debug\ULTRA.exe.config
+C:\Users\LIMA\Desktop\ULTRA\ULTRA\ULTRA\bin\x64\Debug\ULTRA.exe
+C:\Users\LIMA\Desktop\ULTRA\ULTRA\ULTRA\bin\x64\Debug\ULTRA.pdb
+C:\Users\LIMA\Desktop\ULTRA\ULTRA\ULTRA\obj\x64\Debug\ULTRA.csprojAssemblyReference.cache
+C:\Users\LIMA\Desktop\ULTRA\ULTRA\ULTRA\obj\x64\Debug\ULTRA.Form1.resources
+C:\Users\LIMA\Desktop\ULTRA\ULTRA\ULTRA\obj\x64\Debug\ULTRA.Properties.Resources.resources
+C:\Users\LIMA\Desktop\ULTRA\ULTRA\ULTRA\obj\x64\Debug\ULTRA.csproj.GenerateResource.cache
+C:\Users\LIMA\Desktop\ULTRA\ULTRA\ULTRA\obj\x64\Debug\ULTRA.csproj.CoreCompileInputs.cache
+C:\Users\LIMA\Desktop\ULTRA\ULTRA\ULTRA\obj\x64\Debug\ULTRA.csproj.CopyComplete
+C:\Users\LIMA\Desktop\ULTRA\ULTRA\ULTRA\obj\x64\Debug\ULTRA.exe
+C:\Users\LIMA\Desktop\ULTRA\ULTRA\ULTRA\obj\x64\Debug\ULTRA.pdb
+C:\Users\LIMA\Desktop\ULTRA\ULTRA\ULTRA\bin\x64\Debug\Microsoft.Speech.dll
