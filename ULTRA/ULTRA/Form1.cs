@@ -18,6 +18,12 @@ namespace ULTRA
         private SpeechRecognitionEngine engine;
         private CultureInfo ci;
         public string NAME_ASSISTENT = "Ultra";
+        Random randomziner = new Random();
+
+        int ini;
+        int end;
+
+        int timeLeft = 100;
 
         public Form1()
         {
@@ -27,7 +33,7 @@ namespace ULTRA
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            LoadSpeech();
+            
         }
 
         private void Init()
@@ -41,6 +47,27 @@ namespace ULTRA
             catch (Exception e)
             {
                 MessageBox.Show(e.Message, "Erro em Init()");
+            }
+        }
+
+        private void setText(string text)
+        {
+            this.labelText.Text = "Pergunta: " + text;
+        }
+
+        private void setColor(string cor)
+        {
+            switch (cor)
+            {
+                case "green":
+                    this.labelStatus.BackColor = Color.Green;
+                    break;
+                case "red":
+                    this.labelStatus.BackColor = Color.Red;
+                    break;
+                default:
+                    this.labelStatus.BackColor = Color.Black;
+                    break;                        
             }
         }
 
@@ -75,8 +102,55 @@ namespace ULTRA
         #region Evento de reconhecimento
         private void Rec(object s, SpeechRecognizedEventArgs e)
         {
-            labelFala.ResetText();
-            labelFala.Text = e.Result.Text;
+            string fala = e.Result.Text;
+
+            setText(fala);
+            setColor("green");
+
+            switch (e.Result.Grammar.Name)
+            {
+                case "System":
+                    // Tudo aqui dentro é correspondente à gramatica System
+                    if(Gramaticas.qualData.Any(f => f == fala))
+                    {                       
+                        Ex.GetData();
+                        labelFala.ResetText();
+                        labelFala.Visible = true;
+                        IMG_BALON.Visible = true;
+                        labelFala.Text = "Hoje é " + DateTime.Now.ToShortDateString();
+                    }
+                    else if (Gramaticas.quehorassao.Any(f => f == fala))
+                    {
+                        Ex.GetHoras();
+                        labelFala.ResetText();
+                        labelFala.Visible = true;
+                        IMG_BALON.Visible = true;
+                        labelFala.Text = "Hoje é " + DateTime.Now.ToShortTimeString();
+                    }
+                    else if(Gramaticas.SeuNome.Any(f => f == fala))
+                    {
+                        Ex.GetNome();
+                        labelFala.ResetText();
+                        labelFala.Visible = true;
+                        IMG_BALON.Visible = true;
+                        labelFala.Text = "Eu me chamo Ultra";
+                    }
+                    else if (Gramaticas.Dog.Any(f => f == fala))
+                    {
+                        timer1.Start();
+                        timeLeft = 100;
+                        Ex.GetDog();
+                        labelFala.ResetText();
+                        labelFala.Visible = true;
+                        IMG_BALON.Visible = true;
+                        labelFala.Text = "Psi, Psi Psi pSi, PsiPsiPsi, Psi Psi, Psi Psi pSi, PsiPsiPsi, Psi Psi, Psi Psi pSi, PsiPsiPsi, Psi Psi";
+                        IMG_DOG.Visible = false;
+                    }
+
+
+                    break;
+                        
+            }
         }
 
         private void AudioLevel(object s, AudioLevelUpdatedEventArgs e)
@@ -97,7 +171,8 @@ namespace ULTRA
 
         private void Rejected(object s, SpeechRecognitionRejectedEventArgs e)
         {
-
+            setText(e.Result.Text);
+            setColor("red");
         }
         #endregion
 
@@ -108,7 +183,11 @@ namespace ULTRA
 
             #region Choices
             Choices comando = new Choices();
+            // LISTA DE VOICES COMMANDS
             comando.Add(Gramaticas.quehorassao.ToArray());
+            comando.Add(Gramaticas.qualData.ToArray());
+            comando.Add(Gramaticas.SeuNome.ToArray());
+            comando.Add(Gramaticas.Dog.ToArray());
             #endregion
             #region GrammarBuilder
             GrammarBuilder comando_gb = new GrammarBuilder();
@@ -123,25 +202,18 @@ namespace ULTRA
             return gramaticaParaFala;
         }
 
-        private void LoadSpeech()
+        private void timer1_Tick(object sender, EventArgs e)
         {
-            try
+            if(timeLeft > 0)
             {
-                engine = new SpeechRecognitionEngine();
-                engine.SetInputToDefaultAudioDevice();
-
-                string[] words = { "olá", "bom dia", "boa tarde", "boa noite", "que horas são", "me fale as horas por favor" };
-
-                engine.LoadGrammar(new Grammar(new GrammarBuilder(new Choices(words))));
-
-                engine.SpeechRecognized += new EventHandler<SpeechRecognizedEventArgs>(Rec);
-                engine.RecognizeAsync(RecognizeMode.Multiple);
+                timeLeft = timeLeft - 1;
+                IMG_DOG.Visible = true;
             }
-            catch(Exception ex)
+            else
             {
-                MessageBox.Show("Ocorreu no LoadSpeech(): " + ex.Message);
+                timer1.Stop();
+                IMG_DOG.Visible = false;
             }
         }
-
     }
 }

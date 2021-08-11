@@ -63,9 +63,29 @@ namespace ULTRA.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap balao_de_fala_transparente11_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("balao-de-fala-transparente11-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap giphy {
             get {
                 object obj = ResourceManager.GetObject("giphy", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap scary_angry {
+            get {
+                object obj = ResourceManager.GetObject("scary-angry", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
