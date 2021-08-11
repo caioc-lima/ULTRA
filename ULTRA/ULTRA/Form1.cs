@@ -22,6 +22,7 @@ namespace ULTRA
 
         int ini;
         int end;
+        int temp; 
 
         int timeLeft = 100;
 
@@ -112,7 +113,9 @@ namespace ULTRA
                 case "System":
                     // Tudo aqui dentro é correspondente à gramatica System
                     if(Gramaticas.qualData.Any(f => f == fala))
-                    {                       
+                    {
+                        timer2.Start();
+                        temp = 1000;
                         Ex.GetData();
                         labelFala.ResetText();
                         labelFala.Visible = true;
@@ -121,22 +124,28 @@ namespace ULTRA
                     }
                     else if (Gramaticas.quehorassao.Any(f => f == fala))
                     {
+                        timer2.Start();
+                        temp = 1000;
                         Ex.GetHoras();
                         labelFala.ResetText();
                         labelFala.Visible = true;
                         IMG_BALON.Visible = true;
-                        labelFala.Text = "Hoje é " + DateTime.Now.ToShortTimeString();
+                        labelFala.Text = "Agora são " + DateTime.Now.ToShortTimeString();
                     }
                     else if(Gramaticas.SeuNome.Any(f => f == fala))
                     {
+                        timer2.Start();
+                        temp = 1000;
                         Ex.GetNome();
                         labelFala.ResetText();
                         labelFala.Visible = true;
                         IMG_BALON.Visible = true;
-                        labelFala.Text = "Eu me chamo Ultra";
+                        labelFala.Text = "Meu Nome é Ultra";
                     }
                     else if (Gramaticas.Dog.Any(f => f == fala))
                     {
+                        timer2.Start();
+                        temp = 100;
                         timer1.Start();
                         timeLeft = 100;
                         Ex.GetDog();
@@ -145,6 +154,86 @@ namespace ULTRA
                         IMG_BALON.Visible = true;
                         labelFala.Text = "Psi, Psi Psi pSi, PsiPsiPsi, Psi Psi, Psi Psi pSi, PsiPsiPsi, Psi Psi, Psi Psi pSi, PsiPsiPsi, Psi Psi";
                         IMG_DOG.Visible = false;
+                    }
+                    else if (Gramaticas.BoaNoite.Any(f => f == fala))
+                    {
+                        timer2.Start();
+                        temp = 1000;
+                        Ex.GetBoaNoite();
+                        labelFala.ResetText();
+                        labelFala.Visible = true;
+                        IMG_BALON.Visible = true;
+                        labelFala.Text = "Boa noite";                        
+                    }
+                    else if (Gramaticas.Saudacao.Any(f => f == fala))
+                    {
+                        timer2.Start();
+                        temp = 1000;
+                        Ex.GetSaudacao();
+                        labelFala.ResetText();
+                        labelFala.Visible = true;
+                        IMG_BALON.Visible = true;
+                        labelFala.Text = "Eae doidão";
+                    }
+                    else if (Gramaticas.PrazerETodoMeu.Any(f => f == fala))
+                    {
+                        timer2.Start();
+                        temp = 1000;
+                        Ex.GetPrazerETodoMeu();
+                        labelFala.ResetText();
+                        labelFala.Visible = true;
+                        IMG_BALON.Visible = true;
+                        labelFala.Text = "Prazer é todo meu";
+                    }
+                    else if (Gramaticas.VoceeLegal.Any(f => f == fala))
+                    {
+                        timer2.Start();
+                        temp = 1000;
+                        Ex.GetVoceELegal();
+                        labelFala.ResetText();
+                        labelFala.Visible = true;
+                        IMG_BALON.Visible = true;
+                        labelFala.Text = "Muito obrigado";
+                    }
+                    else if (Gramaticas.QualSuaIdade.Any(f => f == fala))
+                    {
+                        timer2.Start();
+                        temp = 1000;
+                        Ex.GetQualSuaIdade();
+                        labelFala.ResetText();
+                        labelFala.Visible = true;
+                        IMG_BALON.Visible = true;
+                        labelFala.Text = "KKKKKKK, nem queira saber, você irá se assustar";
+                    }
+                    else if (Gramaticas.MinhaIdade.Any(f => f == fala))
+                    {
+                        timer2.Start();
+                        temp = 1000;
+                        Ex.GetMinhaIdade();
+                        labelFala.ResetText();
+                        labelFala.Visible = true;
+                        IMG_BALON.Visible = true;
+                        labelFala.Text = "Você me parece ser bem jovem";
+                    }
+                    else if (Gramaticas.Piada.Any(f => f == fala))
+                    {
+                        timer2.Start();
+                        temp = 1000;
+                        Ex.GetPiada();
+                        labelFala.ResetText();
+                        labelFala.Visible = true;
+                        IMG_BALON.Visible = true;
+                        labelFala.Text = "Não sou nenhum palhaço";
+                    }
+                    else if (Gramaticas.Ofensa1.Any(f => f == fala))
+                    {
+                        timer2.Start();
+                        temp = 1000;
+                        Ex.GetOfensa1();
+                        labelFala.ResetText();
+                        labelFala.Visible = true;
+                        IMG_BALON.Visible = true;
+                        labelFala.Text = "Hey Hey Hey, você não pode dizer isso para mim, vou lavar sua boca com sabão";
                     }
 
 
@@ -188,6 +277,14 @@ namespace ULTRA
             comando.Add(Gramaticas.qualData.ToArray());
             comando.Add(Gramaticas.SeuNome.ToArray());
             comando.Add(Gramaticas.Dog.ToArray());
+            comando.Add(Gramaticas.BoaNoite.ToArray());
+            comando.Add(Gramaticas.Saudacao.ToArray());
+            comando.Add(Gramaticas.PrazerETodoMeu.ToArray());
+            comando.Add(Gramaticas.VoceeLegal.ToArray());
+            comando.Add(Gramaticas.QualSuaIdade.ToArray());
+            comando.Add(Gramaticas.MinhaIdade.ToArray());
+            comando.Add(Gramaticas.Piada.ToArray());
+            comando.Add(Gramaticas.Ofensa1.ToArray());
             #endregion
             #region GrammarBuilder
             GrammarBuilder comando_gb = new GrammarBuilder();
@@ -213,6 +310,14 @@ namespace ULTRA
             {
                 timer1.Stop();
                 IMG_DOG.Visible = false;
+            }
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            if(temp > 0)
+            {
+                temp--;
             }
         }
     }
