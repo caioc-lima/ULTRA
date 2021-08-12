@@ -22,19 +22,21 @@ namespace ULTRA
 
         int ini;
         int end;
-        int temp; 
+        int temp;
 
+        int timeLoading;
         int timeLeft = 100;
 
         public Form1()
         {
             InitializeComponent();
-            Init();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            TIMER_LOADING.Start();
+            timeLoading = 50;
+            Init();
         }
 
         private void Init()
@@ -112,128 +114,27 @@ namespace ULTRA
             {
                 case "System":
                     // Tudo aqui dentro é correspondente à gramatica System
-                    if(Gramaticas.qualData.Any(f => f == fala))
+                    if (Gramaticas.quehorassao.Any(f => f == fala))
                     {
                         timer2.Start();
                         temp = 1000;
-                        Ex.GetData();
-                        labelFala.ResetText();
-                        labelFala.Visible = true;
-                        IMG_BALON.Visible = true;
-                        labelFala.Text = "Hoje é " + DateTime.Now.ToShortDateString();
-                    }
-                    else if (Gramaticas.quehorassao.Any(f => f == fala))
-                    {
-                        timer2.Start();
-                        temp = 1000;
+                        IMG_VOICER.Visible = true;
                         Ex.GetHoras();
-                        labelFala.ResetText();
-                        labelFala.Visible = true;
-                        IMG_BALON.Visible = true;
-                        labelFala.Text = "Agora são " + DateTime.Now.ToShortTimeString();
-                    }
-                    else if(Gramaticas.SeuNome.Any(f => f == fala))
-                    {
-                        timer2.Start();
-                        temp = 1000;
-                        Ex.GetNome();
-                        labelFala.ResetText();
-                        labelFala.Visible = true;
-                        IMG_BALON.Visible = true;
-                        labelFala.Text = "Meu Nome é Ultra";
-                    }
+                        LABEL_DIALOG.ResetText();
+                        LABEL_DIALOG.Visible = true;
+                        LABEL_DIALOG.Text = "Agora são " + DateTime.Now.ToShortTimeString();
+                    } 
                     else if (Gramaticas.Dog.Any(f => f == fala))
                     {
                         timer2.Start();
                         temp = 100;
                         timer1.Start();
                         timeLeft = 100;
+                        IMG_VOICER.Visible = true;
                         Ex.GetDog();
-                        labelFala.ResetText();
-                        labelFala.Visible = true;
-                        IMG_BALON.Visible = true;
-                        labelFala.Text = "Psi, Psi Psi pSi, PsiPsiPsi, Psi Psi, Psi Psi pSi, PsiPsiPsi, Psi Psi, Psi Psi pSi, PsiPsiPsi, Psi Psi";
-                        IMG_DOG.Visible = false;
-                    }
-                    else if (Gramaticas.BoaNoite.Any(f => f == fala))
-                    {
-                        timer2.Start();
-                        temp = 1000;
-                        Ex.GetBoaNoite();
-                        labelFala.ResetText();
-                        labelFala.Visible = true;
-                        IMG_BALON.Visible = true;
-                        labelFala.Text = "Boa noite";                        
-                    }
-                    else if (Gramaticas.Saudacao.Any(f => f == fala))
-                    {
-                        timer2.Start();
-                        temp = 1000;
-                        Ex.GetSaudacao();
-                        labelFala.ResetText();
-                        labelFala.Visible = true;
-                        IMG_BALON.Visible = true;
-                        labelFala.Text = "Eae doidão";
-                    }
-                    else if (Gramaticas.PrazerETodoMeu.Any(f => f == fala))
-                    {
-                        timer2.Start();
-                        temp = 1000;
-                        Ex.GetPrazerETodoMeu();
-                        labelFala.ResetText();
-                        labelFala.Visible = true;
-                        IMG_BALON.Visible = true;
-                        labelFala.Text = "Prazer é todo meu";
-                    }
-                    else if (Gramaticas.VoceeLegal.Any(f => f == fala))
-                    {
-                        timer2.Start();
-                        temp = 1000;
-                        Ex.GetVoceELegal();
-                        labelFala.ResetText();
-                        labelFala.Visible = true;
-                        IMG_BALON.Visible = true;
-                        labelFala.Text = "Muito obrigado";
-                    }
-                    else if (Gramaticas.QualSuaIdade.Any(f => f == fala))
-                    {
-                        timer2.Start();
-                        temp = 1000;
-                        Ex.GetQualSuaIdade();
-                        labelFala.ResetText();
-                        labelFala.Visible = true;
-                        IMG_BALON.Visible = true;
-                        labelFala.Text = "KKKKKKK, nem queira saber, você irá se assustar";
-                    }
-                    else if (Gramaticas.MinhaIdade.Any(f => f == fala))
-                    {
-                        timer2.Start();
-                        temp = 1000;
-                        Ex.GetMinhaIdade();
-                        labelFala.ResetText();
-                        labelFala.Visible = true;
-                        IMG_BALON.Visible = true;
-                        labelFala.Text = "Você me parece ser bem jovem";
-                    }
-                    else if (Gramaticas.Piada.Any(f => f == fala))
-                    {
-                        timer2.Start();
-                        temp = 1000;
-                        Ex.GetPiada();
-                        labelFala.ResetText();
-                        labelFala.Visible = true;
-                        IMG_BALON.Visible = true;
-                        labelFala.Text = "Não sou nenhum palhaço";
-                    }
-                    else if (Gramaticas.Ofensa1.Any(f => f == fala))
-                    {
-                        timer2.Start();
-                        temp = 1000;
-                        Ex.GetOfensa1();
-                        labelFala.ResetText();
-                        labelFala.Visible = true;
-                        IMG_BALON.Visible = true;
-                        labelFala.Text = "Hey Hey Hey, você não pode dizer isso para mim, vou lavar sua boca com sabão";
+                        LABEL_DIALOG.ResetText();
+                        LABEL_DIALOG.Visible = true;
+                        LABEL_DIALOG.Text = "Psi, Psi Psi pSi, PsiPsiPsi, Psi Psi, Psi Psi pSi, PsiPsiPsi, Psi Psi, Psi Psi pSi, PsiPsiPsi, Psi Psi";
                     }
 
 
@@ -274,17 +175,8 @@ namespace ULTRA
             Choices comando = new Choices();
             // LISTA DE VOICES COMMANDS
             comando.Add(Gramaticas.quehorassao.ToArray());
-            comando.Add(Gramaticas.qualData.ToArray());
-            comando.Add(Gramaticas.SeuNome.ToArray());
             comando.Add(Gramaticas.Dog.ToArray());
-            comando.Add(Gramaticas.BoaNoite.ToArray());
-            comando.Add(Gramaticas.Saudacao.ToArray());
-            comando.Add(Gramaticas.PrazerETodoMeu.ToArray());
-            comando.Add(Gramaticas.VoceeLegal.ToArray());
-            comando.Add(Gramaticas.QualSuaIdade.ToArray());
-            comando.Add(Gramaticas.MinhaIdade.ToArray());
-            comando.Add(Gramaticas.Piada.ToArray());
-            comando.Add(Gramaticas.Ofensa1.ToArray());
+
             #endregion
             #region GrammarBuilder
             GrammarBuilder comando_gb = new GrammarBuilder();
@@ -301,6 +193,7 @@ namespace ULTRA
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            /*
             if(timeLeft > 0)
             {
                 timeLeft = timeLeft - 1;
@@ -310,7 +203,7 @@ namespace ULTRA
             {
                 timer1.Stop();
                 IMG_DOG.Visible = false;
-            }
+            }*/
         }
 
         private void timer2_Tick(object sender, EventArgs e)
@@ -319,6 +212,39 @@ namespace ULTRA
             {
                 temp--;
             }
+        }
+
+        private void TIMER_LOADING_Tick(object sender, EventArgs e)
+        {
+
+            if(timeLoading > 0)
+            {
+                labelText.Text = "Carregando arquivos...";
+                timeLoading--;
+            }
+            else
+            {
+                // HIDE
+                IMG_LOADING.Visible = false;
+
+                // SHOW
+                PANEL_DIALOG.Visible = true;
+                IMG_ULTRON.Visible = true;
+                BarraVoicer.Visible = true;
+                TIMER_LOADING.Stop();
+                timeLoading = 0;
+                labelText.Text = "Pergunta: ";
+            }
+        }
+
+        private void IMG_VOICER_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LABEL_DIALOG_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
